@@ -1,0 +1,16 @@
+%section.section
+  .container
+    %h1.title
+      = @post.title
+    .content
+      = @post.content
+      
+%section.section
+  .container
+    %nav.navbar.navbar-dark.bg-dark
+      %p Actions
+      = link_to 'Edit', edit_post_path(@post), class: 'btn btn-light', role: 'button'
+      = link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger', role: 'button'
+      
+    .content
+      = @post.content

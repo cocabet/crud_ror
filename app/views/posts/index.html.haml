@@ -1,2 +1,14 @@
 %h1
   Blog Index
+
+%section.section
+  .container
+    - @posts.each do |p|
+      .card
+        .card-body
+          %h4.card-title
+            = link_to p.title, p
+          %h6.card-text
+            = p.content
+
+
