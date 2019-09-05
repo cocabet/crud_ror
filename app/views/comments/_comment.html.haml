@@ -1,0 +1,8 @@
+.card
+  %card-header
+    %strong
+      = comment.name
+    = link_to 'Delete', [comment.post, comment], method: :delete, class: "btn btn-danger float-right", data: { confirm: "Are you sure ?"}
+  %card-body
+    = comment.comment
+    

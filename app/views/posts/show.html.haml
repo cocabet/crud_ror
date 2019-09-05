@@ -1,16 +1,29 @@
 %section.section
   .container
-    %h1.title
-      = @post.title
-    .content
-      = @post.content
-      
+    .card
+      .card-header
+        %nav.mb-1.navbar.navbar-expand-lg.navbar-dark.bg-light
+          %a.navbar-brand
+            %p
+              Actions
+          .collapse.navbar-collapse#navbarSupportedContent-333
+            %ul.navbar-nav.ml-auto.nav-flex-icons
+              %li.nav-item
+                = link_to 'Edit', edit_post_path(@post), class: 'nav-button btn btn-primary', role: 'button'
+              %li.nav-item
+                = link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class: 'nav-button btn btn-danger', role: 'button'
+      .card-body
+        = @post.content
+%br/
+
 %section.section
   .container
-    %nav.navbar.navbar-dark.bg-dark
-      %p Actions
-      = link_to 'Edit', edit_post_path(@post), class: 'btn btn-light', role: 'button'
-      = link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger', role: 'button'
-      
-    .content
-      = @post.content
+    %h2
+      %strong 
+        = @post.comments.count 
+        Comments
+    = render @post.comments 
+    .comment-form
+      %hr/
+      %h3.subtitle Leave a reply
+      = render 'comments/form'

@@ -10,7 +10,56 @@
   </head>
 
   <body>
+      <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+          <a class="navbar-brand" href="#">AweosmeBlog</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+              <% if current_user %>
+              <li class="nav-item active">
+                <%= link_to posts_path, class: 'nav-link' do %>
+                  Home
+                <span class="sr-only">(current)</span>
+                </a>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+              <li class="nav-item">
+                <a class="nav-link waves-effect waves-light">
+                    <i class="fas fa-add"></i>
+                </a>
+              </li>
+              <% if current_user %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                    aria-labelledby="navbarDropdownMenuLink-333">
+                    <%= link_to 'New Post', new_post_path, class: "dropdown-item" %> 
+                    <%= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item",method: :delete %> 
+                  </div>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Sign up', new_user_registration_path, class: "navbar-brand" %>
+                </li>
+                <li>
+                  <%= link_to 'Sign in', new_user_session_path, class: "navbar-brand" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
     <main class="container">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p> 
         <%= yield %>
     </main>
   </body>
